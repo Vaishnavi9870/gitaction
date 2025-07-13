@@ -30,4 +30,4 @@ jobs:
         run: echo "The API key is ${{ secrets.REPOKEY}}"
 
       - name: Run a one line script1
-        run: echo ${{ secrets.ENVSEC }}
+        run: echo "This is environment secret ${{ secrets.ENVSEC }}"
