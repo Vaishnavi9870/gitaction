@@ -31,3 +31,10 @@ jobs:
 
       - name: Run a one line script1
         run: echo "This is environment secret ${{ secrets.ENVSEC }}"
+        
+      - name: Set env var for later steps
+        run: |
+          echo "MY_NAME=GitHubUser" >> $GITHUB_ENV
+
+      - name: Use env var in another step
+        run: echo "Hello, $MY_NAME"
