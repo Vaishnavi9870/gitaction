@@ -11,3 +11,12 @@ on:
         description: 'Deployment environment'
         required: true
         default: 'dev'
+jobs:
+  print-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print inputs
+        run: |
+          echo "Username: ${{ github.event.inputs.username }}"
+          echo "Environment: ${{ github.event.inputs.environment }}"
+
