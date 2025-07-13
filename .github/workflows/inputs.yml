@@ -1,0 +1,13 @@
+name: Print Inputs Example
+
+on:
+  workflow_dispatch:
+    inputs:
+      username:
+        description: 'Your GitHub username'
+        required: true
+        default: 'guest'
+      environment:
+        description: 'Deployment environment'
+        required: true
+        default: 'dev'
