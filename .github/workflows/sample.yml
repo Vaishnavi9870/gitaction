@@ -21,20 +21,14 @@ jobs:
     runs-on: self-hosted
 
     # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+     steps:
       - uses: actions/checkout@v4
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo "The API key is ${{ secrets.REPOKEY}}"
-
-      - name: Run a one line script1
-        run: echo "This is environment secret ${{ secrets.ENVSEC }}"
-        
-      - name: Set env var for later steps
-        run: |
-          echo "MY_NAME=GitHubUser" >> $GITHUB_ENV
-
-      - name: Use env var in another step
-        run: echo "Hello, $MY_NAME"
+      - name: Decrypt large secret
+        run: ./decrypt_secret.sh
+        env:
+          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PASSPHRASE }}
+      # This command is just an example to show your secret being printed
+      # Ensure you remove any print statements of your secrets. GitHub does
+      # not hide secrets that use this workaround.
+      - name: Test printing your secret (Remove this step in production)
+        run: cat $HOME/secrets/my_secret.json
