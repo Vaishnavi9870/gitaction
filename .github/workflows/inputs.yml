@@ -11,6 +11,14 @@ on:
         description: 'Deployment environment'
         required: true
         default: 'dev'
+      name:
+        type: choice
+        description: choose a name
+        options:
+         - vaishnavi
+         - good girl
+          
+
 jobs:
   print-inputs:
     runs-on: ubuntu-latest
@@ -19,4 +27,5 @@ jobs:
         run: |
           echo "Username: ${{ github.event.inputs.username }}"
           echo "Environment: ${{ github.event.inputs.environment }}"
+          echo "name: ${{github.event.inputs.name}}"
 
